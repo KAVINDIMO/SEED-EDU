@@ -337,3 +337,15 @@ def Srevnotes(request,grd):
 	notes=Notes.objects.all().filter(grade=grd)
 	serializer = NotesSerializer(notes,many=True)
 	return Response(serializer.data)
+
+@api_view(['POST'])
+def Abooklist(request,addby):
+	serializer = BookSerializer(data=request.data)
+	if serializer.is_valid():
+		print("SUCCESS")
+		serializer.save()
+		return Response(serializer.data)
+	else:
+		print("ERROR")
+		print("error",serializer.errors)
+		return Response(serializer.errors)
