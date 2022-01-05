@@ -339,7 +339,7 @@ def Srevnotes(request,grd):
 	return Response(serializer.data)
 
 @api_view(['POST'])
-def Abooklist(request,addby):
+def Abooklist(request):
 	serializer = BookSerializer(data=request.data)
 	if serializer.is_valid():
 		print("SUCCESS")

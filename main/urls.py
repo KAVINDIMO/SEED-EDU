@@ -50,5 +50,5 @@ path("sbook-list/<str:grd>/",views.Sbooklist,name="sbook-api"),
 path("qptypes-list/<str:grd>/",views.Squesbank,name="squesbank-api"),
 path("bpapers-list/<str:uid>/",views.Sbpapers,name="sbpapers-api"),
 path("revnotes-list/<str:grd>/",views.Srevnotes,name="srevnotes-api"),
-path("Abook-list/<str:addby>/",views.Abooklist,name="abooks-api")
+path("addbook-list/",views.Abooklist,name="abooks-api")
 ]
