@@ -19,6 +19,7 @@ class Books(models.Model):
     author=models.CharField(max_length=200,default="NCERT")
     file=models.FileField(default="images/default.pdf")
     addedby=models.CharField(max_length=1000,default="Admin")
+    visible=models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

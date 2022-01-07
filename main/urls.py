@@ -52,4 +52,5 @@ path("bpapers-list/<str:uid>/",views.Sbpapers,name="sbpapers-api"),
 path("revnotes-list/<str:grd>/",views.Srevnotes,name="srevnotes-api"),
 path("addbook-list/",views.Abooklist,name="addbooks-api"),
 path("tbook-list/<str:adb>/",views.Atbooklist,name="teacherviewbooks-api"),
-]path("tdelbook-list/<str:adb>/<str:bid>/",views.Atdelbooklist,name="delTbooks-api")
+path("tdelbook-list/<str:adb>/<str:bid>/",views.Atdelbooklist,name="delTbooks-api")
+]

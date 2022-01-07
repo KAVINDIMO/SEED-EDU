@@ -59,7 +59,7 @@ def edit(request):
 #API
 @api_view(['GET'])
 def Abooklist(request):
-	books = Books.objects.all().order_by('-id')
+	books = Books.objects.all().filter(visible=True).order_by('-id')
 	serializer = BookSerializer(books, many=True)
 	return Response(serializer.data)
 
@@ -197,7 +197,7 @@ def Avideolist(request):
 
 @api_view(['GET'])
 def Abookstandardlist(request,key):
-	booklist=Books.objects.all()
+	booklist=Books.objects.all().filter(visible=True)
 	for i in booklist:
 		if(str(i.bgrade) != str(key)):
 			booklist=booklist.exclude(pk=i.id)
@@ -316,7 +316,7 @@ def Amresultlist(request,mil):
 
 @api_view(['GET'])
 def Sbooklist(request,grd):
-	sbl=Books.objects.all().filter(bgrade__forgrade=grd)
+	sbl=Books.objects.all().filter(bgrade__forgrade=grd,visible=True)
 	serializer = BookSerializer(sbl,many=True)
 	return Response(serializer.data)
 
@@ -358,12 +358,17 @@ def Atbooklist(request,adb):
 
 @api_view(['GET'])
 def Atdelbooklist(request,adb,bid):
-	flag=Books.objects.all().filter(addedby=adb,pk__exact=bid)
-	Books.objects.all().filter(addedby=adb,pk__exact=bid).delete()
+	print("here")
+	flag=Books.objects.all().filter(addedby=adb,pk__exact=int(bid))
+	Books.objects.all().filter(addedby=adb,pk__exact=bid).update(visible=False)
+	books=Books.objects.all().filter(addedby=adb,visible=True)
+	serializer = BookSerializer(books,many=True)
 	if(flag):
 		stat="success"
 		print(stat)
+		print(flag)
 	else:
 		stat="fail"
 		print(stat)
-	return Response(stat.data)
+		print(flag)
+	return Response(serializer.data)
