@@ -349,3 +349,21 @@ def Abooklist(request):
 		print("ERROR")
 		print("error",serializer.errors)
 		return Response(serializer.errors)
+
+@api_view(['GET'])
+def Atbooklist(request,adb):
+	books=Books.objects.all().filter(addedby=adb)
+	serializer = BookSerializer(books,many=True)
+	return Response(serializer.data)
+
+@api_view(['GET'])
+def Atdelbooklist(request,adb,bid):
+	flag=Books.objects.all().filter(addedby=adb,pk__exact=bid)
+	Books.objects.all().filter(addedby=adb,pk__exact=bid).delete()
+	if(flag):
+		stat="success"
+		print(stat)
+	else:
+		stat="fail"
+		print(stat)
+	return Response(stat.data)
