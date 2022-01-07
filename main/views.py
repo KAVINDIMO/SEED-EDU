@@ -356,14 +356,14 @@ def Atbooklist(request,adb):
 	serializer = BookSerializer(books,many=True)
 	return Response(serializer.data)
 
-@api_view(['GET'])
-def Atdelbooklist(request,adb,bid):
-	flag=Books.objects.all().filter(addedby=adb,pk__exact=bid)
-	Books.objects.all().filter(addedby=adb,pk__exact=bid).delete()
-	if(flag):
-		stat="success"
-		print(stat)
-	else:
-		stat="fail"
-		print(stat)
-	return Response(stat.data)
+# @api_view(['GET'])
+# def Atdelbooklist(request,adb,bid):
+# 	flag=Books.objects.all().filter(addedby=adb,pk__exact=bid)
+# 	Books.objects.all().filter(addedby=adb,pk__exact=bid).delete()
+# 	if(flag):
+# 		stat="success"
+# 		print(stat)
+# 	else:
+# 		stat="fail"
+# 		print(stat)
+# 	return Response(stat.data)
